@@ -15,7 +15,10 @@ def about(request):
 
 
 def players(request):
-    return render(request, 'players.html')
+    content = {
+        "players": Player.objects.all()
+    }
+    return render(request, 'players.html', content)
 
 
 def record_transfers(request):
