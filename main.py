@@ -1,16 +1,24 @@
-# This is a sample Python script.
+# n = int(input())
+# print([x for x in range(1, n + 1)])
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# n = [0] * 10
+# print(n)
 
+# a = 1
+# b = 2
+# c = 3
+# print(a, b, c)
+# a, b, c = c, b, a
+# print(a, b, c)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# for __, v in enumerate(range(1, n + 1)):
+#     print(__, v)
 
+# print(range(1, 5))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# d = {"a": 1, "b": 2}
+#
+# for x in d:
+#     print(x)
+# x = "Ali", "Aliyev", 33
+# print(x)
