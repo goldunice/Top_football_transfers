@@ -27,15 +27,6 @@ class Player(models.Model):
         return self.ism
 
 
-class Transfer(models.Model):
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    eski_club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="sotuvlari")
-    yangi_club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    narx = models.FloatField()
-    tax_narx = models.FloatField()
-    mavsum = models.CharField(max_length=255)
-
-
 class HMavsum(models.Model):
     hozirgi_mavsum = models.CharField(max_length=255)
 
@@ -45,3 +36,20 @@ class HMavsum(models.Model):
     class Meta:
         verbose_name = "Hozirgi Mavsum"
         verbose_name_plural = "Hozirgi Mavsum"
+
+
+class Transfer(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    eski_club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="sotuvlari")
+    yangi_club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    narx = models.FloatField()
+    tax_narx = models.FloatField()
+    mavsum = models.CharField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        m = HMavsum.objects.last().hozirgi_mavsum
+        if self.mavsum == m:
+            player = self.player
+            player.club = self.yangi_club
+            player.save()
+        super(Transfer, self).save(*args, **kwargs)
