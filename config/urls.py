@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from mainApp.views import (home, clubs, about, players, record_transfers, u20players, latest_transfers, davlat_clublari,
-                           club_players, stats)
+                           club_players, stats, transfer_archive, season)
 
 urlpatterns = ([
                    path('admin/', admin.site.urls),
@@ -14,6 +14,8 @@ urlpatterns = ([
                    path('clubs/', clubs),
                    path('about/', about),
                    path('players/', players),
+                   path('season/<str:year>/', season),
+                   path('transfer_archive/', transfer_archive),
                    path('stats/record_transfers/', record_transfers),
                    path('u20players/', u20players),
                    path('latest_transfers/', latest_transfers),

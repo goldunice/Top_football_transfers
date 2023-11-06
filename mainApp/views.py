@@ -68,3 +68,20 @@ def club_players(request, club):
         "club": club
     }
     return render(request, 'country-clubs.html', content)
+
+
+def transfer_archive(request):
+    content = {
+        "seasons": Transfer.objects.exclude(
+            mavsum=HMavsum.objects.first()
+        ).values("mavsum").distinct().order_by("mavsum")
+    }
+    return render(request, 'transfer-archive.html', content)
+
+
+def season(request, year):
+    content = {
+        "season_year": year,
+        "season_transfer": Transfer.objects.filter(mavsum=year)
+    }
+    return render(request, '2017-18season.html', content)
